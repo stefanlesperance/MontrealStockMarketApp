@@ -1,0 +1,37 @@
+<h1>Stocking</h1>
+<p>This is my second app!</p>
+
+
+<%= form_tag root_path, :method => 'POST' do %>
+
+<%= text_field_tag :ticker, params[:ticker], placeholder: "Enter Ticker Symbol", size: 50%>
+<%= submit_tag 'Lookup' %>
+
+<%end %>
+
+<br>
+
+<% if @stock %>
+
+	<%= @stock.latest_price%>
+
+	<br><br><br>
+
+	<%= @stock.company_name%>
+
+<% elsif @nothing%>
+
+	<%= @nothing%>
+
+<% elsif @errorMsg %>
+
+		<%= @error %>
+
+<% elsif @nErrorMsg %>
+
+		<%= @nErrorMsg %>
+
+<% end %>
+
+	
+	

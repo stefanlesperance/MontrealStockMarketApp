@@ -1,0 +1,41 @@
+<div class = "col-md-6 offset-md-3">
+  <h2>Sign up</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class = "form">
+    <div class="field">
+      <%= f.label :email, class: 'form-label' %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password, class: 'form-label' %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, class: 'form-label' %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+    </div>
+
+<div class="checkbox">
+    <label class="checkbox-inline no_indent">
+        <input name="Terms" id="Terms" type="checkbox">
+        Remember Me
+    </label>
+</div>
+
+    <br>
+    <div class="actions">
+      <%= f.submit "Sign up", class: 'btn btn-primary btn-block mb-4' %>
+    </div>
+    <% end %>
+  </div>
+  <br>
+  <%= render "devise/shared/links" %>
+</div>

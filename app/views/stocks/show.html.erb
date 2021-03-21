@@ -1,0 +1,32 @@
+<%begin%>
+	<% @ticker = StockQuote::Stock.quote(@stock.ticker) %>
+		<% if !@ticker %>
+				<%= @error = "This stock ticker does not exist"%>
+		<%else%>
+			<div class = "container col-md-6">
+				<ul class = "list-group">
+					<li class="list-group-item"><h2 class = "text-center"> Company Name: <%= @ticker.company_name%> </h2></li>
+					<li class="list-group-item"><h6 class = "text-center"> Ticker Symbol: <%= @ticker.symbol%> </h6></li>
+					<li class="list-group-item"> <h6 class = "text-center">Current Price: <%= number_with_precision(@ticker.latest_price, :precision => 2, :delimiter => ',') %></h6></li>
+					<li class="list-group-item"> <h6 class = "text-center">Previous Close: <%= number_with_precision(@ticker.previous_close, :precision => 2, :delimiter => ',') %></h6></li>
+					<li class="list-group-item"> <h6 class = "text-center">Change: <%= number_with_precision(@ticker.change, :precision => 2, :delimiter => ',') %></h6></li>
+					<li class="list-group-item"> <h6 class = "text-center">Percent Change: <%= number_with_precision(@ticker.change_percent) %>%</h6></li>
+					<li class="list-group-item"> <h6 class = "text-center"> YTD Change: <%= number_with_precision(@ticker.ytd_change, :precision => 2, :delimiter => ',') %>%<br/></h6></li>
+					<li class="list-group-item"><h6 class = "text-center"> Market Cap: $<%= number_with_precision(@ticker.market_cap, :precision => 2, :delimiter => ',') %><br/> </h6></li>
+
+				</ul>
+
+			</div>
+
+			<div class = "container">
+				<%= link_to 'Edit', edit_stock_path(@ticker) %> |
+				<%= link_to 'Back', stocks_path %>
+			</div>
+		<%end%>
+<% rescue => @errorMessageAtShow %>
+	<%= @error = "An Error Occurred" %>
+		<div class = "container">
+			<%= link_to 'Back', stocks_path %>
+		</div>
+<% end %>
+
