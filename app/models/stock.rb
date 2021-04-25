@@ -15,5 +15,6 @@ class Stock < ApplicationRecord
 	validates_uniqueness_of :ticker, scope: :user_id
 	validates :ticker, presence: true
 	validates :ticker, format: { without: /\s/}
+	validates_format_of :ticker, :with => /[a-z]+/i
 	validates_with StockValidator
 end
